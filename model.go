@@ -90,6 +90,7 @@ type Track struct {
 	Typeorder                      string `json:"@typeorder,omitempty"`
 	FormatCommercialIfAny          string `json:"Format_Commercial_IfAny,omitempty"`
 	FormatSettingsEndianness       string `json:"Format_Settings_Endianness,omitempty"`
+	FormatAdditionalFeatures       string `json:"Format_AdditionalFeatures,omitempty"`
 	Channels                       string `json:"Channels,omitempty"`
 	ChannelPositions               string `json:"ChannelPositions,omitempty"`
 	ChannelLayout                  string `json:"ChannelLayout,omitempty"`

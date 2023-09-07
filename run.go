@@ -25,5 +25,5 @@ func Run(inputPath, outputPath string) (string, error) {
 	if _, err := save.WriteString(parse); err != nil {
 		return "", err
 	}
-	return "", err
+	return parse, err
 }
