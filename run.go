@@ -1,11 +1,10 @@
 package mi
 
 import (
-	"os"
 	"os/exec"
 )
 
-func Run(inputPath, outputPath string) (string, error) {
+func Run(inputPath string) (string, error) {
 	cmd := exec.Command("mediainfo", "--Output=JSON", inputPath)
 	output, err := cmd.Output()
 	if err != nil {
@@ -17,13 +16,13 @@ func Run(inputPath, outputPath string) (string, error) {
 		return "", err
 	}
 
-	save, err := os.Create(outputPath)
-	if err != nil {
-		return "", err
-	}
+	//save, err := os.Create(outputPath)
+	//if err != nil {
+	//	return "", err
+	//}
 
-	if _, err := save.WriteString(parse); err != nil {
-		return "", err
-	}
+	//if _, err := save.WriteString(parse); err != nil {
+	//	return "", err
+	//}
 	return parse, err
 }

@@ -6,8 +6,8 @@ func AudioLang(langText string) string {
 	special := map[string]string{
 		"yue":   "Cantonese",
 		"zh-TW": "Mandarin",
-		"es-ES": "European Spanish",
-		"pt-BR": "Brazilian Portuguese",
+		"es-ES": "Spanish (European)",
+		"pt-BR": "Portuguese (Brazilian)",
 		"fil":   "Filipino",
 	}
 

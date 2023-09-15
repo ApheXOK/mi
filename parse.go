@@ -42,9 +42,9 @@ func Parse(data []byte) (string, error) {
 			mediaInfoText.WriteString("RESOLUTION....: " + r.Width + "x" + r.Height + "\n")
 		}
 		if r.Type == "Audio" {
-			format := r.Format
-			if r.FormatAdditionalFeatures != "" {
-				format += " " + r.FormatAdditionalFeatures
+			format := r.FormatCommercialIfAny
+			if format == "" {
+				format = r.Format
 			}
 			mediaInfoText.WriteString("AUDIO.........: " + format + " " +
 				r.Channels + " Channels " + "@" + convert.BitRate(r.BitRate) + " " +
