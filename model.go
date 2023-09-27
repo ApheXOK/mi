@@ -52,6 +52,12 @@ type Track struct {
 	FormatLevel                    string `json:"Format_Level,omitempty"`
 	FormatSettingsCABAC            string `json:"Format_Settings_CABAC,omitempty"`
 	FormatSettingsRefFrames        string `json:"Format_Settings_RefFrames,omitempty"`
+	HDRFormat                      string `json:"HDR_Format,omitempty"`
+	HDRFormatVersion               string `json:"HDR_Format_Version,omitempty"`
+	HDRFormatProfile               string `json:"HDR_Format_Profile,omitempty"`
+	HDRFormatLevel                 string `json:"HDR_Format_Level,omitempty"`
+	HDRFormatSettings              string `json:"HDR_Format_Settings,omitempty"`
+	HDRFormatCompatibility         string `json:"HDR_Format_Compatibility,omitempty"`
 	CodecID                        string `json:"CodecID,omitempty"`
 	BitRateMode                    string `json:"BitRate_Mode,omitempty"`
 	BitRate                        string `json:"BitRate,omitempty"`

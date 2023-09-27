@@ -20,6 +20,10 @@ func SubtitleLang(langText, title string) string {
 		parts := strings.SplitN(langText, "-", 2)
 		languageName := iso6391.Name(parts[0])
 
+		if parts[0] == "fil" {
+			languageName = "Filipino"
+		}
+
 		// Handle special cases
 		langVariants := map[string]string{
 			"BR":   "Brazilian",
@@ -29,8 +33,12 @@ func SubtitleLang(langText, title string) string {
 		}
 
 		if variant, exists := langVariants[parts[1]]; exists {
+			if strings.Contains(titleSuffix, variant) {
+				titleSuffix = ""
+			}
 			return fmt.Sprintf("%s (%s)%s", languageName, variant, titleSuffix)
 		}
+
 		return languageName + titleSuffix
 	}
 

@@ -9,21 +9,42 @@ import (
 )
 
 func main() {
-	inputPath := flag.String("in", "", "Input Path")
-	outputPath := flag.String("out", "", "Output Path")
+	inputPath := flag.String("i", "", "Input Path")
 	flag.Parse()
 
 	if *inputPath == "" {
+		fmt.Println("Input path is required")
 		return
 	}
 
-	if *outputPath == "" {
-		*outputPath = filepath.Join(filepath.Dir(*inputPath), "mediainfo.txt")
+	var parsed string
+	var err error
+
+	switch filepath.Ext(*inputPath) {
+	case ".json":
+		parsed, err = parseJSONFile(*inputPath)
+	default:
+		parsed, err = parseDefaultFile(*inputPath)
 	}
 
-	if _, err := mi.Run(*inputPath, *outputPath); err != nil {
-		fmt.Println("Error", err)
-		os.Exit(1)
+	if err != nil {
+		fmt.Println("ERROR", err)
+		return
 	}
 
+	fmt.Println("------------------------ Media Info ----------------------")
+	fmt.Print(parsed)
+	fmt.Println("----------------------------------------------------------")
+}
+
+func parseJSONFile(filePath string) (string, error) {
+	fi, err := os.ReadFile(filePath)
+	if err != nil {
+		return "", err
+	}
+	return mi.Parse(fi)
+}
+
+func parseDefaultFile(filePath string) (string, error) {
+	return mi.Run(filePath)
 }
