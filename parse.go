@@ -38,7 +38,7 @@ func Parse(data []byte) (string, error) {
 		}
 		if r.Type == "Video" {
 			mediaInfoText.WriteString("VIDEO CODEC...: " + r.Format + ", " +
-				r.FormatProfile + "@L" + r.FormatLevel + "\n")
+				strings.ReplaceAll(r.FormatProfile, " ", "") + "@L" + r.FormatLevel + "\n")
 			if r.HDRFormat != "" {
 				mediaInfoText.WriteString("HDR Format....: " + HDRFormat(r) + "\n")
 			}
@@ -79,7 +79,11 @@ func HDRFormat(r Track) string {
 			text.WriteString(hdrLevel + " compatible" + " / " + hdrType)
 		}
 	} else {
-		text.WriteString(r.HDRFormat + ", " + "Version: " + r.HDRFormatVersion + ", " + r.HDRFormatCompatibility)
+		text.WriteString(r.HDRFormat)
+		if len(r.HDRFormatVersion) > 0 {
+			text.WriteString(", " + "Version: " + r.HDRFormatVersion)
+		}
+		text.WriteString(", " + r.HDRFormatCompatibility)
 	}
 
 	return text.String()
